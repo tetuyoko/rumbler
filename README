@@ -1,2 +1,9 @@
 Array#sampleでシャッフル
 
+###USAGE
+
+~~~
+bundle exec bin/rumbler
+~~~
+ 
+

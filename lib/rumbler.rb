@@ -1,12 +1,16 @@
 require 'progressbar'
 require 'rumbler/shuffle'
 
+# shuffle and progress
 module Rumbler
   class << self
-    def play(amount=100)
+    KEYS = %w(Tetuyoko yokoyama hoge unko)
+    DEFAULT_AMOUNT = 100
+
+    def play(amount = DEFAULT_AMOUNT)
       shuffle = Shuffle.new(amount, score_board)
       shuffle.rumble
-      finish 
+      finish
     end
 
     def score_board
@@ -14,19 +18,13 @@ module Rumbler
     end
 
     def create_score_board
-      keys = <<-EOF.gsub(/^\s*/,'').split("\n")
-        Tetuyoko
-        Yokoyama
-        HogeR
-      EOF
-      values = Array.new(keys.size, 0)
-      Hash[keys.zip(values)]
+      values = Array.new(KEYS.size, 0)
+      Hash[KEYS.zip(values)]
     end
 
     def finish
-      winner = score_board.max_by {|k,v| v }.first
+      winner = score_board.max_by { |_k, v| v }.first
       puts "#{winner} is got a prize!"
     end
   end
 end
-
