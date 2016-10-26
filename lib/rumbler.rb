@@ -1,11 +1,10 @@
-require 'ruby-progressbar'
 require 'rumbler/shuffle'
 
 # shuffle and progress
 module Rumbler
   class << self
-    KEYS = ['a', 'b', 'c']
-    DEFAULT_AMOUNT = 100
+    KEYS = [*1..7]
+    DEFAULT_AMOUNT = 1000
 
     def play(amount = DEFAULT_AMOUNT)
       shuffle = Shuffle.new(amount, score_board)

@@ -1,3 +1,6 @@
+require 'ruby-progressbar'
+require 'parallel'
+
 module Rumbler
   # shuffle and show progressbar
   class Shuffle
@@ -12,9 +15,9 @@ module Rumbler
 
     def rumble
       @amount.times { score_up }
-      @score_board.each_pair do |key, value|
-        active_bar = find_pbar(key)
-        value.times do
+      Parallel.each(@score_board, in_threads: 6) do |arr|
+        active_bar = find_pbar(arr[0])
+        arr[1].times do
           sleep SLEEP_TIME
           active_bar.progress += 1
         end
