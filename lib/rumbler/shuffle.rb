@@ -6,7 +6,7 @@ module Rumbler
     def initialize(amount, score_board)
       @amount, @score_board = amount, score_board
       @progs = @score_board.keys.map do |key|
-        ProgressBar.new(key, @amount)
+        ProgressBar.create(title: key, total: @amount)
       end
     end
 
@@ -16,9 +16,9 @@ module Rumbler
         active_bar = find_pbar(key)
         value.times do
           sleep SLEEP_TIME
-          active_bar.inc
+          active_bar.progress += 1
         end
-        active_bar.halt
+        active_bar.stop
       end
     end
 

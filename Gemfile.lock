@@ -1,10 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    progressbar (0.11.0)
+    ruby-progressbar (1.8.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  progressbar
+  ruby-progressbar
+
+BUNDLED WITH
+   1.13.1
